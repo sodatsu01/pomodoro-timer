@@ -2,7 +2,7 @@
   "name": "pomodoro-timer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "jest"
@@ -22,5 +22,8 @@
     "react-dom": "^16.11.0",
     "spectron": "^9.0.0",
     "webpack": "^4.41.2"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.6.1"
   }
 }

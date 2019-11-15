@@ -21,4 +21,6 @@ describe('Window', function() {
   it("shows a window when start the application", function() {
     app.client.getWindowCount().then((count) => assert.equal(count, 1))
   })
+  //  it("shows count downtimer on center", function() {
+  //})
 })
