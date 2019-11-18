@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button'
 class StartButton extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      play: false
+    }
   }
   render() {
     return (

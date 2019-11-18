@@ -7,9 +7,15 @@ import StartButton from '../../src/components/StartButton';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('StartButton', () => {
+  const wrapper = shallow(<StartButton />);
   it('has a class named start ', () => {
-    expect(shallow(<StartButton />).exists('.start')).toBe(true); // TODO: Buttonタグの確認
+    expect(wrapper.exists('.start')).toBe(true); // TODO: Buttonタグの確認
   });
   it('returns state.play=false by default', () => {
+    expect(wrapper.state().play).toBe(false);
   });
+  it('makes state.play=true when it be clicked', () => {
+    wrapper.find('.start').simulate('click');
+    expect(wrapper.state().play).toBe(true);
+  })
 });
