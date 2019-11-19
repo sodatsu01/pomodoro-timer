@@ -7,10 +7,19 @@ class StartButton extends Component {
     this.state = {
       play: false
     }
+    this.handleClick = this.handleClick.bind(this)
   }
+
+  handleClick() {
+    this.setState(state =>({
+      play: !state.play
+    }))
+  }
+    
   render() {
     return (
-      <Button variant="contained" className='start'>
+      <Button variant='contained' color='primary' className='start' onClick={this.handleClick}>
+        {this.state.play ? "stop" : "start"}
       </Button>
     )
   }
