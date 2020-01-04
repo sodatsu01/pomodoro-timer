@@ -1,34 +1,34 @@
-const path = require('path')
-const webpack = require('webpack')
-
-const externalPlugins = new webpack.ExternalsPlugin('common.js', [
-  'app',
-  'auto-updater',
-  'browser-window'
-])
+const path = require('path');
 
 module.exports = {
-  entry: {
-    index: path.join(__dirname, 'src', 'index.js'),
+  target: "electron-main",
+  node: {
+    __dirname: false,
+    __filename: false
   },
-  output: {
-    path: path.join(__dirname, 'out'),
-    filename: '[name].js'
+  resolve: {
+    extensions: [".js", ".jsx"]
   },
-  devtool: 'cheap-module-eval-source-map',
-  target: 'node',
   module: {
     rules: [
       {
-        test: /.js$/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['es2015', 'react']
-        }
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.css$/,
+        loaders: [ "style-loader", "css-loader" ]
       }
     ]
   },
-  plugins: [
-    externalPlugins
-  ]
-}
+  entry: {
+    "main/main": "./src/main/main.js",
+    "renderer/index": "./src/renderer/index.jsx"
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: "[name].js"
+  },
+  devtool: "source-map"
+};

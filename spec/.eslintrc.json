@@ -20,6 +20,8 @@
         "react"
     ],
     "rules": {
+      "import/no-unresolved": "warn",
+      "import/extensions": "warn",
       "import/no-extraneous-dependencies": ["error", {
         "devDependencies": true,
        "optionalDependencies": false

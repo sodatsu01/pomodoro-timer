@@ -13,7 +13,7 @@ app.on('window-all-closed', function () {
 function createWindow () {
   mainWindow = new BrowserWindow({width: 400, height: 600})
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, '../../index.html'),
     protocol: 'file:',
     slashes: true
   }))

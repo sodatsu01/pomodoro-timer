@@ -50,5 +50,4 @@ class PomodoroTimer extends Component {
     );
   }
 }
-
 export default PomodoroTimer;
