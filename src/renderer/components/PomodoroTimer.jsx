@@ -17,7 +17,7 @@ class PomodoroTimer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      remaining: WORKING_TIME, // remainingはstateじゃないのでは？
+      remaining: WORKING_TIME,
       isStart: false,
       isWorking: true,
     };
