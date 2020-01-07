@@ -11,41 +11,58 @@ function convertMillisecondsToMinSec(milliseconds) {
 
 const WORKING_TIME = 1500000; // milliseconds
 const BREAK_TIME = 300000; // milliseconds
+const TICK = 1000;
 
 class PomodoroTimer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      remaining: WORKING_TIME,
+      remaining: WORKING_TIME, // remainingはstateじゃないのでは？
+      isStart: false,
+      isWorking: true,
     };
   }
 
   handleTick() {
-    const currentTime = Date.now();
-    const elapsed = currentTime - this.prevTime;
-    const { remaining } = this.state;
-    const nextRemaining = remaining - elapsed;
-
+    const { isWorking, remaining } = this.state;
+    const nextRemaining = remaining - TICK;
     if (nextRemaining <= 0) {
-      this.setState({ remaining: BREAK_TIME });
+      this.setState({ isWorking: !isWorking });
+      if (isWorking) {
+        this.setState({ remaining: BREAK_TIME });
+      } else {
+        this.setState({ remaining: WORKING_TIME });
+      }
     } else {
-      this.prevTime = currentTime;
       this.setState({ remaining: nextRemaining });
     }
   }
 
-  handleStart() {
-    this.prevTime = Date.now();
-    this.timerId = setInterval(this.handleTick.bind(this), 1000);
+  handleStartButtonClicked() {
+    const { isStart } = this.state;
+    if (!isStart) {
+      this.timerId = setInterval(this.handleTick.bind(this), TICK);
+    } else {
+      clearInterval(this.timerId);
+    }
+    this.setState({ isStart: !isStart });
+  }
+
+  renderTime() {
+    const { remaining } = this.state;
+    const time = convertMillisecondsToMinSec(remaining);
+    return time;
   }
 
   render() {
-    const { remaining } = this.state;
-    const time = convertMillisecondsToMinSec(remaining);
+    const { isStart } = this.state;
     return (
       <div>
-        <h3>{time}</h3>
-        <StartButton onClick={this.handleStart()}>test</StartButton>
+        <h3>{this.renderTime()}</h3>
+        <StartButton
+          isStart={isStart}
+          onClick={() => this.handleStartButtonClicked()}
+        />
       </div>
     );
   }
