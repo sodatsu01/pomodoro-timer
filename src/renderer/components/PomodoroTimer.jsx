@@ -57,9 +57,10 @@ class PomodoroTimer extends Component {
   render() {
     const { isStart } = this.state;
     return (
-      <div>
-        <h3>{this.renderTime()}</h3>
+      <div className="pomodoroTimer">
+        <h2 className="timer">{this.renderTime()}</h2>
         <StartButton
+          className="startButton"
           isStart={isStart}
           onClick={() => this.handleStartButtonClicked()}
         />

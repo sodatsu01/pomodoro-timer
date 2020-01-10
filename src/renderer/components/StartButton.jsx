@@ -1,3 +1,4 @@
+// 表示名の切替はここがじゃなくて、stateを持ってるPomodoroTimer側で制御する？
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
